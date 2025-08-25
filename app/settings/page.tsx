@@ -19,6 +19,7 @@ import useDarkMode from '@/hooks/useDarkmode'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import i18nConfig from '@/next-i18next.config';
 import { useTranslation } from 'next-i18next';
+import Link from 'next/link';
 
 
 const page = () => {
@@ -87,7 +88,7 @@ const page = () => {
                             <div className=' text-left w-[90%] h-full flex items-center justify-center border-b border-b-slate-400 dark:border-b-white/50 pb-[10px]'>
                                 <div className=' w-full flex items-center justify-between'>
                                     <div>
-                                       <h1 className=' text-black dark:text-white font-bold text-[16px] lg: text-xl'>Notifications</h1>
+                                        <h1 className=' text-black dark:text-white font-bold text-[16px] lg: text-xl'>Notifications</h1>
                                         <p className=' text-slate-400 dark:text-white/60 text-[13px] lg:text-sm'>Let us inform you about special offers</p>
                                     </div>
 
@@ -130,8 +131,8 @@ const page = () => {
                             {theme === 'dark' ? '🌙 Dark' : '☀️ Light'}
                         </h1> */}
 
-                        <button
-                            onClick={() => setIsTermsAndConditionsModalOpen(true)}
+                        <Link
+                            href={"/termsAndConditionOutlined"}
                             className=' cursor-pointer w-full  flex items-center justify-between h-[80px] mb-[10px]'
                         >
                             <div className=' lg:w-[8%] max-sm:mr-[10px] pb-[10px] h-full flex items-center justify-center'>
@@ -146,10 +147,10 @@ const page = () => {
                                     <p className=' text-slate-400 dark:text-white/60 text-[13px] lg:text-sm'>View our terms & conditions</p>
                                 </div>
                             </div>
-                        </button>
+                        </Link>
 
-                        <button
-                            onClick={() => setIsPrivacyPolicyModalOpen(true)}
+                        <Link
+                            href={"/privacyPolicyOutlined"}
                             className=' cursor-pointer w-full  flex items-center justify-between h-[80px] mb-[10px]'
                         >
                             <div className=' lg:w-[8%] max-sm:mr-[10px] pb-[10px] h-full flex items-center justify-center'>
@@ -164,7 +165,7 @@ const page = () => {
                                     <p className=' text-slate-400 dark:text-white/60 text-[13px] lg:text-sm'>View our privacy policy</p>
                                 </div>
                             </div>
-                        </button>
+                        </Link>
 
                         <button
                             className=' cursor-pointer w-full  flex items-center justify-between h-[80px] mb-[10px]'

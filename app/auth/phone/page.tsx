@@ -11,9 +11,11 @@ import ellipse6 from "@/assets/Ellipse 6.png"
 import logo from "@/assets/logo.png"
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import CountrySelector from '@/components/CountrySelector'
 
 const page = () => {
     const [value, setValue] = useState('');
+    const [toast, setToast] = useState(false)
     const [isComplete, setIsComplete] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +33,10 @@ const page = () => {
 
         setValue(formatted);
     };
+
+    const handleErr = () => {
+        setToast(true)
+    }
 
 
     // API Integration
@@ -109,25 +115,33 @@ const page = () => {
                     <div className=' w-[70%] m-auto'>
                         <p className=' text-[#0000008C] dark:text-slate-600 text-sm mb-[4px]'>Mobile Number</p>
                         <form className=' font-bold text-2xl mb-[10px] flex items-center'>
-                            <select name="" id="" className=' focus:outline-none bg-transparent mr-[2px] text-black dark:text-slate-600'>
-                                <option value="+996">+996</option>
-                            </select>
+                            <div className=' min-w-[100px]'>
+                                <CountrySelector />
+                            </div>
                             <input id="custom-number"
                                 type="text"
                                 inputMode="numeric"
                                 value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
+                                onChange={(e) => {
+                                    const value = e.target.value.replace(/\D/g, ""); // only digits
+                                    if (value.length <= 10) {
+                                        setPhone(value);
+                                        setIsComplete(value.length === 10); // true when exactly 10 digits
+                                    }
+                                }}
+                                maxLength={10}
                                 placeholder='00 0000 0000' className='bg-transparent appearance-none focus:outline-none text-black dark:text-slate-600' />
                         </form>
-
+                        {
+                            toast && <p className=' text-red-500'>Enter a valid phone number!</p>
+                        }
                         <div className=' w-full flex items-center justify-between'>
-                            {/* {
-                                isComplete ? */}
-                            <button onClick={handleNext} className=' w-[99%] text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
-                            {/* : */}
-                            {/* (<Link href="" className=' w-[49%] text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white/60 py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</Link>) */}
-                            {/* } */}
-                            {/* <Link href="/" className=' w-[49%] text-center bg-red-500 text-white py-[10px] px-[100px] rounded-md hover:bg-red-500/60 duration-500'>Cancel</Link> */}
+                            {
+                                isComplete ?
+                                    <button onClick={handleNext} className=' w-[99%] text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
+                                    :
+                                    <button onClick={handleErr} className=' w-[99%] text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
+                            }
                         </div>
                     </div>
                 </div>
@@ -136,18 +150,28 @@ const page = () => {
                     <Link href={"/termsandconditions"} className=' mx-auto block h-[4px] w-[32px] rounded-full bg-[#0000001A] dark:bg-[#FFFFFF1A] dark:border dark:border-[#FFFFFF00] mb-[20px]'></Link>
                     <p className=' text-[#0000008C] dark:text-slate-600 text-[13px] mb-[10px]'>Mobile Number</p>
                     <form className=' font-bold text-2xl mb-[10px] flex items-center pb-[10px] border-b border-b-[#0000001A] dark:border-b-[#0000001A]'>
-                        <select name="" id="" className=' focus:outline-none bg-transparent mr-[2px] text-black dark:text-slate-600'>
-                            <option value="+996">+996</option>
-                        </select>
+                        <CountrySelector />
                         <input id="custom-number"
                             type="text"
                             inputMode="numeric"
                             value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
+                            onChange={(e) => {
+                                const value = e.target.value.replace(/\D/g, ""); // only digits
+                                if (value.length <= 10) {
+                                    setPhone(value);
+                                    setIsComplete(value.length === 10); // true when exactly 10 digits
+                                }
+                            }}
+                            maxLength={10}
                             placeholder='00 0000 0000' className='bg-transparent appearance-none focus:outline-none text-black dark:text-slate-600' />
                     </form>
+                    {
+                        isComplete ?
+                            <button onClick={handleNext} className=' mb-[10px] text-[15px] font-bold block w-full text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
+                            :
+                            <button onClick={handleErr} className=' mb-[10px] text-[15px] font-bold block w-full text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
+                    }
 
-                    <button onClick={handleNext} className=' mb-[10px] text-[15px] font-bold block w-full text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
                     {/* <Link href="/" className=' w-full mb-[10px] text-[15px] font-bold block text-center bg-red-500 text-white py-[10px] px-[100px] rounded-md hover:bg-red-500/60 duration-500'>Cancel</Link> */}
                 </div>
             </div>

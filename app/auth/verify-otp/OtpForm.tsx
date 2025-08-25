@@ -15,6 +15,7 @@ import Link from 'next/link'
 
 const OtpForm = () => {
     const [value, setValue] = useState('');
+    const [toast, setToast] = useState(false)
     const [isComplete, setIsComplete] = useState(false);
     const [validOTP, setValidOTP] = useState(false)
 
@@ -98,6 +99,10 @@ const OtpForm = () => {
     //         setError('An unexpected error occurred');
     //     }
     // };
+
+    const handleErr = () => {
+        setToast(true)
+    }
 
     const handleVerify = async () => {
         try {
@@ -222,19 +227,27 @@ const OtpForm = () => {
                                 type="text"
                                 inputMode="numeric"
                                 value={otp}
-                                onChange={(e) => setOtp(e.target.value)}
+                                onChange={(e) => {
+                                    const value = e.target.value.replace(/\D/g, ""); // only digits
+                                    if (value.length <= 10) {
+                                        setOtp(value);
+                                        setIsComplete(value.length === 4); // true when exactly 10 digits
+                                    }
+                                }}
+                                maxLength={4}
                                 placeholder='_ _ _ _' className='bg-transparent appearance-none focus:outline-none text-black' />
                         </form>
                         <h1 className=' mb-4 text-sm text-black dark:text-slate-600'>Resend OTP in <span className=' text-[#ab4fa8]'>01:59 sec</span></h1>
-
+                        {
+                            toast && <p className=' text-red-500'>Enter a valid phone number!</p>
+                        }
                         <div className=' w-full flex items-center justify-between'>
-                            {/* {
-                                isComplete ? */}
-                                    (<button onClick={handleVerify} className=' w-[99%] text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black dark:hover:bg-[#AB4FA8]/60 duration-500'>Verify</button>)
-                            {/* //         :
-                            //         (<button onClick={() => setValidOTP(true)} className=' cursor-pointer w-[49%] text-center bg-blue-500 text-white/60 py-[10px] px-[100px] rounded-md hover:bg-[#1B1B1B] duration-500'>Verify</button>)
-                            // } */}
-                            {/* <Link href="/" className=' w-[49%] text-center bg-red-500 text-white py-[10px] px-[100px] rounded-md hover:bg-red-500/60 duration-500'>Cancel</Link> */}
+                            {
+                                isComplete ?
+                                    <button onClick={handleVerify} className=' w-[99%] text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
+                                    :
+                                    <button onClick={handleErr} className=' w-[99%] text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
+                            }
                         </div>
                     </div>
                 </div>
@@ -262,14 +275,27 @@ const OtpForm = () => {
                             type="text"
                             inputMode="numeric"
                             value={otp}
-                            onChange={(e) => setOtp(e.target.value)}
+                            onChange={(e) => {
+                                const value = e.target.value.replace(/\D/g, ""); // only digits
+                                if (value.length <= 10) {
+                                    setOtp(value);
+                                    setIsComplete(value.length === 4); // true when exactly 10 digits
+                                }
+                            }}
+                            maxLength={4}
                             placeholder='_ _ _ _' className='bg-transparent appearance-none focus:outline-none text-black' />
                     </form>
 
                     <h1 className=' mb-4 text-[14px] text-black dark:text-slate-600'>Resend OTP in <span className=' text-[#ab4fa8]'>01:59 sec</span></h1>
-
-                    <button onClick={handleVerify} className=' mb-[10px] text-[15px] font-bold block w-full text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Verify</button>
-                    {/* <Link href="/" className=' w-full mb-[10px] text-[15px] font-bold block text-center bg-red-500 text-white py-[10px] px-[100px] rounded-md hover:bg-red-500/60 duration-500'>Cancel</Link> */}
+                    {
+                        toast && <p className=' text-red-500'>Enter a valid phone number!</p>
+                    }
+                    {
+                        isComplete ?
+                            <button onClick={handleVerify} className=' mb-[10px] text-[15px] font-bold block w-full text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
+                            :
+                            <button onClick={handleErr} className=' mb-[10px] text-[15px] font-bold block w-full text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
+                    }
                 </div>
             </div>
         </div>
