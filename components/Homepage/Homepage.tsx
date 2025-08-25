@@ -3,7 +3,7 @@ import Hero from './sections/Hero'
 
 const Homepage = () => {
     return (
-        <div>
+        <div className=' h-[100vh] w-[100vw]'>
             <Hero />
         </div>
     )
