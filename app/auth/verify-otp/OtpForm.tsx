@@ -149,7 +149,7 @@ const OtpForm = () => {
     if (!phone) return null;
 
     return (
-        <div className=' w-screen h-screen bg-white dark:bg-[#000000] relative flex items-center justify-center'>
+        <div className=' w-[100vw] h-[100dvh] bg-white dark:bg-[#000000] relative flex items-center justify-center'>
             <div className=' absolute h-full w-full bg-transparent flex items-center justify-center z-[3]'>
                 <Image
                     src={ellipse}

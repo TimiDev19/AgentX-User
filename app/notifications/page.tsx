@@ -68,7 +68,7 @@ const page = () => {
     const length: number = 0
 
     return (
-        <div className=' w-screen h-screen bg-[#000000] relative flex items-start justify-center'>
+        <div className=' w-[100vw] h-[100dvh] bg-[#000000] relative flex items-start justify-center'>
             <div className=' h-[calc(100vh-150px)] bg-[#f6f5f5] dark:bg-black w-full z-[25] flex flex-col items-center justify-end'>
                 <div className=' w-full lg:w-[70%] mx-auto h-[90%] text-black dark:text-white rounded-2xl px-[30px]'>
                     <h1 className=' font-extrabold text-4xl'>Notifications</h1>
