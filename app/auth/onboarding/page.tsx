@@ -13,26 +13,21 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import CountrySelector from '@/components/CountrySelector'
 import { IconArrowNarrowRight } from '@tabler/icons-react'
+import LanguageSelector from '@/components/LanguageSelector'
 
 const page = () => {
     const [value, setValue] = useState('');
     const [toast, setToast] = useState(false)
     const [isComplete, setIsComplete] = useState(false);
+    const [hasText, setHasText] = useState(false);
+    const [hasTexts, setHasTexts] = useState(false);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let input = e.target.value.replace(/\D/g, ''); // Strip non-digits
-        input = input.slice(0, 10); // Max 10 digits
+    const handleChange = (e) => {
+        setHasText(e.target.value.trim().length > 0);
+    };
 
-        // Set completion state
-        setIsComplete(input.length === 10);
-
-        // Format: 00 0000 0000
-        let formatted = '';
-        if (input.length > 0) formatted += input.slice(0, 2);
-        if (input.length > 2) formatted += ' ' + input.slice(2, 6);
-        if (input.length > 6) formatted += ' ' + input.slice(6, 10);
-
-        setValue(formatted);
+    const handleChanges = (e) => {
+        setHasTexts(e.target.value.trim().length > 0);
     };
 
     const handleErr = () => {
@@ -46,17 +41,7 @@ const page = () => {
     const router = useRouter();
 
     const handleNext = async () => {
-        const res = await fetch('/api/request-otp', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ phone }),
-        });
-
-        if (res.ok) {
-            router.push(`/auth/verify-otp?phone=${encodeURIComponent(phone)}`);
-        } else {
-            setError('Failed to send OTP');
-        }
+        router.push(`/auth/selectLanguage`);
     };
 
     return (
@@ -116,29 +101,18 @@ const page = () => {
                     <div className=' w-[70%] m-auto'>
                         <p className=' text-[#0000008C] dark:text-slate-600 text-sm mb-[4px]'>Mobile Number</p>
                         <form className=' font-bold text-2xl mb-[10px] flex items-center'>
-                            <div className=' min-w-[100px]'>
-                                <CountrySelector />
-                            </div>
                             <input id="custom-number"
                                 type="text"
                                 inputMode="numeric"
-                                value={phone}
-                                onChange={(e) => {
-                                    const value = e.target.value.replace(/\D/g, ""); // only digits
-                                    if (value.length <= 10) {
-                                        setPhone(value);
-                                        setIsComplete(value.length === 10); // true when exactly 10 digits
-                                    }
-                                }}
-                                maxLength={10}
+                                onChange={handleChange}
                                 placeholder='00 0000 0000' className='bg-transparent appearance-none focus:outline-none text-black dark:text-slate-600' />
                         </form>
                         {
-                            toast && <p className=' text-red-500'>Enter a valid phone number!</p>
+                            toast && <p className=' text-red-500'>Invalid Credentials!</p>
                         }
                         <div className=' w-full flex items-center justify-between'>
                             {
-                                isComplete ?
+                                hasText ?
                                     <button onClick={handleNext} className=' w-[99%] text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
                                     :
                                     <button onClick={handleErr} className=' w-[99%] text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
@@ -149,29 +123,27 @@ const page = () => {
 
                 <div className=' lg:hidden w-screen bg-white dark:bg-black py-[10px] rounded-t-2xl block px-[10px]'>
                     <Link href={"/termsandconditions"} className=' mx-auto block h-[4px] w-[32px] rounded-full bg-[#0000001A] dark:bg-[#FFFFFF1A] dark:border dark:border-[#FFFFFF00] mb-[20px]'></Link>
-                    <p className=' text-[#0000008C] dark:text-slate-600 text-[13px] mb-[10px]'>Mobile Number</p>
+                    <p className=' text-[#0000008C] dark:text-slate-600 text-[13px] mb-[10px]'>What's your name?</p>
                     <form className=' font-bold text-2xl mb-[10px] flex items-center pb-[10px] border-b border-b-[#0000001A] dark:border-b-[#0000001A]'>
-                        <CountrySelector />
                         <input id="custom-number"
                             type="text"
-                            inputMode="numeric"
-                            value={phone}
-                            onChange={(e) => {
-                                const value = e.target.value.replace(/\D/g, ""); // only digits
-                                if (value.length <= 10) {
-                                    setPhone(value);
-                                    setIsComplete(value.length === 10); // true when exactly 10 digits
-                                }
-                            }}
-                            maxLength={10}
-                            placeholder='00 0000 0000' className='bg-transparent appearance-none focus:outline-none text-black dark:text-slate-600' />
+                            onChange={handleChange}
+                            placeholder='Enter' className='bg-transparent appearance-none focus:outline-none text-black dark:text-slate-600' />
+                    </form>
+                    <p className=' text-[#0000008C] dark:text-slate-600 text-[13px] mb-[10px]'>What's your family name?</p>
+                    <form className=' font-bold text-2xl mb-[10px] flex items-center pb-[10px] border-b border-b-[#0000001A] dark:border-b-[#0000001A]'>
+                        <input id="custom-number"
+                            type="text"
+                            onChange={handleChanges}
+                            placeholder='Enter' className='bg-transparent appearance-none focus:outline-none text-black dark:text-slate-600' />
                     </form>
                     {
-                        isComplete ?
-                            <button onClick={handleNext} className=' mb-[10px] text-[15px] font-bold w-full text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500 flex items-center justify-center'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]'/></button>
+                        hasText && hasTexts ?
+                            <button onClick={handleNext} className=' mb-[10px] text-[15px] font-bold w-full text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500 flex items-center justify-center'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]' /></button>
                             :
-                            <button onClick={handleErr} className=' mb-[10px] text-[15px] font-bold w-full text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500 flex items-center justify-center'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]'/></button>
+                            <button onClick={handleErr} className=' mb-[10px] text-[15px] font-bold w-full text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500 flex items-center justify-center'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]' /></button>
                     }
+                    <LanguageSelector/>
 
                     {/* <Link href="/" className=' w-full mb-[10px] text-[15px] font-bold block text-center bg-red-500 text-white py-[10px] px-[100px] rounded-md hover:bg-red-500/60 duration-500'>Cancel</Link> */}
                 </div>
