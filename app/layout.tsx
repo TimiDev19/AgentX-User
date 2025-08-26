@@ -40,7 +40,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased ${inter.className}`}
       >
-        <main className=" max-h-[100dvh] w-[100vw]">
+        <main className=" max-h-[100dvh] w-[100vw] overflow-x-hidden">
           {children}
         </main>
       </body>
