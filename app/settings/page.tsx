@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar'
-import { IconCompass } from '@tabler/icons-react';
+import { IconCompass, IconCreditCardPay } from '@tabler/icons-react';
 import { IconBell } from '@tabler/icons-react';
 import { IconSun } from '@tabler/icons-react';
 import { IconFile } from '@tabler/icons-react';
@@ -58,9 +58,27 @@ const page = () => {
                 <div className=' w-full lg:w-[70%] mx-auto h-[90%] text-black dark:text-white rounded-2xl px-[7px] lg:px-[30px]'>
                     <h1 className=' font-extrabold text-4xl mb-[10px]'>Settings</h1>
                     <div className=' w-full h-full flex flex-col items-center justify-start text-slate-500 dark:text-white/60'>
+                        <Link
+                            href={"/transactions"}
+                            className=' cursor-pointer w-full  flex items-center justify-between h-[80px mb-[10px]'
+                        >
+                            <div className=' lg:w-[8%] max-sm:mr-[10px] pb-[10px] h-full flex items-center justify-center'>
+                                <div className=" lg:h-[60px] lg:w-[60px] h-[50px] w-[50px] rounded-full bg-[#E8E8E8] dark:bg-white/10 flex items-center justify-center">
+                                    <IconCreditCardPay size={32} stroke={1} />
+                                </div>
+                            </div>
+
+                            <div className=' text-left w-[90%] h-full flex items-center justify-center border-b border-b-slate-400 dark:border-b-white/50 pb-[10px]'>
+                                <div className=' w-full'>
+                                    <h1 className=' text-black dark:text-white font-bold text-[16px] lg:text-xl'>Transactions</h1>
+                                    <p className=' text-slate-400 dark:text-white/60 text-[13px] lg:text-sm'>View all your transactions with Agent X</p>
+                                </div>
+                            </div>
+                        </Link>
+
                         <button
                             onClick={() => setIsLanguageModalOpen(true)}
-                            className=' cursor-pointer w-full  flex items-center justify-between h-[80px mb-[10px]]'
+                            className=' cursor-pointer w-full  flex items-center justify-between h-[80px mb-[10px]'
                         >
                             <div className=' lg:w-[8%] max-sm:mr-[10px] pb-[10px] h-full flex items-center justify-center'>
                                 <div className=" lg:h-[60px] lg:w-[60px] h-[50px] w-[50px] rounded-full bg-[#E8E8E8] dark:bg-white/10 flex items-center justify-center">

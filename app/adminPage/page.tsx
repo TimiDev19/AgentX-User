@@ -45,7 +45,7 @@ const page = () => {
     }, []);
 
     return (
-        <div className=' w-[100vw] max-h-[100dvh] bg-[#000000] relative flex items-start justify-center'>
+        <div className=' w-[100vw] h-[100dvh] bg-[#000000] relative flex items-start justify-center'>
             <div className=' h-[calc(100vh-150px)] bg-[#f6f5f5] dark:bg-black w-full z-[25] flex flex-col items-center justify-end'>
                 <div className=' w-[70%] mx-auto h-[60px] bg-[#E6E6E6] dark:bg-[#1B1B1B] text-[#9E9E9E] dark:text-white rounded-2xl px-[30px] flex items-center justify-between'>
                     <input

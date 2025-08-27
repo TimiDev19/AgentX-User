@@ -14,6 +14,7 @@ import logo from "@/assets/logo.png"
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import { IconArrowNarrowLeft } from '@tabler/icons-react';
 
 // interface Notifications {
 //     _id: string;
@@ -71,6 +72,14 @@ const page = () => {
         <div className=' w-[100vw] h-[100dvh] bg-[#000000] relative flex items-start justify-center'>
             <div className=' h-[calc(100vh-150px)] bg-[#f6f5f5] dark:bg-black w-full z-[25] flex flex-col items-center justify-end'>
                 <div className=' h-full overflow-y-scroll w-full bg-transparent dark:bg-transparent rounded-t-3xl p-2'>
+                    <div className=' w-full flex items-center justify-start mb-[20px]'>
+                        <Link
+                            href={"/settings"}
+                            className=' p-1 border border-black text-black rounded-full hover:border-none duration-500 dark:border-white dark:text-white'
+                        >
+                            <IconArrowNarrowLeft stroke={1} size={30} />
+                        </Link>
+                    </div>
                     <h1 className=' font-extrabold text-[24px] lg:text-3xl mb-[10px] text-black dark:text-white text-center w-[98%] lg:w-[70%] mx-auto'>Terms & Conditions</h1>
                     <p className=' text-black dark:text-white/30 text-center mb-[10px] w-[98%] lg:w-[70%] mx-auto'>Read through our terms and conditions</p>
                     <p className=' w-[98%] lg:w-[70%] mx-auto text-black text-center dark:text-white/30 text-[13px] lg:text-sm'>

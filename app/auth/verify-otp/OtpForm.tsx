@@ -121,7 +121,7 @@ const OtpForm = () => {
                     sessionStorage.setItem('authToken', data.token);
 
                     // Redirect to protected route
-                    router.push('/onboarding');
+                    router.push('/auth/onboarding');
                 } else {
                     setError('No token received from server.');
                 }
@@ -293,9 +293,9 @@ const OtpForm = () => {
                     }
                     {
                         isComplete ?
-                            <button onClick={handleVerify} className=' mb-[10px] text-[15px] font-bold w-full text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500 flex items-center justify-center'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]'/></button>
+                            <button onClick={handleVerify} className=' h-[52px] mb-[10px] text-[15px] font-bold w-full text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-xl hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500 flex items-center justify-center'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]'/></button>
                             :
-                            <button onClick={handleErr} className=' mb-[10px] text-[15px] font-bold w-full text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500 flex items-center justify-center'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]'/></button>
+                            <button onClick={handleErr} className=' h-[52px] mb-[10px] text-[15px] font-bold w-full text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white py-[10px] px-[100px] rounded-xl hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500 flex items-center justify-center'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]'/></button>
                     }
                 </div>
             </div>

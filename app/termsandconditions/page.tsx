@@ -78,8 +78,8 @@ const page = () => {
                     <Link href={"/"} className=' mx-auto block h-[4px] w-[32px] rounded-full bg-[#0000001A] dark:bg-[#FFFFFF1A] dark:border dark:border-[#FFFFFF00] mb-[20px]'></Link>
                     <h1 className=' text-black dark:text-white text-[18px] font-bold text-left'>Terms & Conditions</h1>
                     <p className=' text-slate-600 text-sm text-[13px] mb-[20px]'>Please accept our <Link href={'/termsAndConditionOutlined'} className=' text-black dark:text-[#AB4FA8]'>terms & conditions,</Link> <Link href={'/privacyPolicyOutlined'} className=' text-black dark:text-[#AB4FA8]'>privacy policy</Link> and continue using our app</p>
-                    <Link href="/auth/phone" className=' mb-[10px] text-[15px] font-bold block w-full text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>I Accept</Link>
-                    <Link href="/" className=' w-full mb-[10px] text-[15px] font-bold block text-center bg-red-500 text-white py-[10px] px-[100px] rounded-md hover:bg-red-500/60 duration-500'>Cancel</Link>
+                    <Link href="/auth/phone" className=' h-[52px] flex items-center justify-center mb-[10px] text-[15px] rounded-xl font-bold w-full text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>I Accept</Link>
+                    <Link href="/" className=' w-full mb-[10px] text-[15px] font-bold flex items-center justify-center h-[52px] text-center bg-red-500 text-white py-[10px] px-[100px] rounded-xl hover:bg-red-500/60 duration-500'>Cancel</Link>
                 </div>
             </div>
         </div>
