@@ -99,25 +99,8 @@ const page = () => {
             <div className=' absolute h-full w-full bg-slate-900/60 flex flex-col items-center justify-end z-[8]'>
                 <div className='hidden lg:block w-[100vw] mx-auto bg-[#f6f5f5] dark:bg-black py-[30px]'>
                     <div className=' w-[70%] m-auto'>
-                        <p className=' text-[#0000008C] dark:text-slate-600 text-sm mb-[4px]'>Mobile Number</p>
-                        <form className=' font-bold text-2xl mb-[10px] flex items-center'>
-                            <input id="custom-number"
-                                type="text"
-                                inputMode="numeric"
-                                onChange={handleChange}
-                                placeholder='00 0000 0000' className='bg-transparent appearance-none focus:outline-none text-black dark:text-slate-600' />
-                        </form>
-                        {
-                            toast && <p className=' text-red-500'>Invalid Credentials!</p>
-                        }
-                        <div className=' w-full flex items-center justify-between'>
-                            {
-                                hasText ?
-                                    <button onClick={handleNext} className=' w-[99%] text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
-                                    :
-                                    <button onClick={handleErr} className=' w-[99%] text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
-                            }
-                        </div>
+                        <LanguageSelector />
+                        <button onClick={handleNext} className=' w-[99%] text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
                     </div>
                 </div>
 

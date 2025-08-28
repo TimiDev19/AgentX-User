@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.gradient {
+    background-image: url("../assets/Mask\ group.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.playStore {
+    background-image: url("../assets/googlePlay.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.appStore {
+    background-image: url("../assets/appStore.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.gradient50vh {
+    background-image: url("../assets/50vhmask.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.tryAgent {
+    background-image: url("../assets/tryMask.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.lighthomegradientmobile {
+    background-image: url("../assets/lightmobilemask.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

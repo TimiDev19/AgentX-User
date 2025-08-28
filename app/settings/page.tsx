@@ -185,7 +185,8 @@ const page = () => {
                             </div>
                         </Link>
 
-                        <button
+                        <Link
+                            href={"/about"}
                             className=' cursor-pointer w-full  flex items-center justify-between h-[80px] mb-[10px]'
                         >
                             <div className=' lg:w-[8%] max-sm:mr-[10px] pb-[10px] h-full flex items-center justify-center'>
@@ -200,7 +201,7 @@ const page = () => {
                                     <p className=' text-slate-400 dark:text-white/60 text-[13px] lg:text-sm'>Learn about Agent X</p>
                                 </div>
                             </div>
-                        </button>
+                        </Link>
 
                         <div className=' w-full flex items-center justify-center'>
                             <button
