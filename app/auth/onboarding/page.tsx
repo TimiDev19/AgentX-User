@@ -22,14 +22,13 @@ const page = () => {
     const [hasText, setHasText] = useState(false);
     const [hasTexts, setHasTexts] = useState(false);
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setHasText(e.target.value.trim().length > 0);
     };
 
-    const handleChanges = (e) => {
-        setHasTexts(e.target.value.trim().length > 0);
+    const handleChanges = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setHasText(e.target.value.trim().length > 0);
     };
-
     const handleErr = () => {
         setToast(true)
     }
