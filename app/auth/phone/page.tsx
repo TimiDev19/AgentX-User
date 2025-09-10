@@ -43,17 +43,22 @@ const page = () => {
     // API Integration
     const [phone, setPhone] = useState('');
     const [error, setError] = useState('');
+    const [countryCode, setCountryCode] = useState('');
     const router = useRouter();
 
     const handleNext = async () => {
+        // renders the country code with the rest of the phone number
+        const fullPhone = `${countryCode}${phone}`;
+        console.log("📞 Sending to API:", fullPhone); 
+
         const res = await fetch('/api/request-otp', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ phone }),
+            body: JSON.stringify({ phone: fullPhone }),
         });
 
         if (res.ok) {
-            router.push(`/auth/verify-otp?phone=${encodeURIComponent(phone)}`);
+            router.push(`/auth/verify-otp?phone=${encodeURIComponent(fullPhone)}`);
         } else {
             setError('Failed to send OTP');
         }
@@ -117,7 +122,7 @@ const page = () => {
                         <p className=' text-[#0000008C] dark:text-slate-600 text-sm mb-[4px]'>Mobile Number</p>
                         <form className=' font-bold text-2xl mb-[10px] flex items-center'>
                             <div className=' min-w-[100px]'>
-                                <CountrySelector />
+                                <CountrySelector onSelectCode={setCountryCode} />
                             </div>
                             <input id="custom-number"
                                 type="text"
@@ -151,7 +156,7 @@ const page = () => {
                     <Link href={"/termsandconditions"} className=' mx-auto block h-[4px] w-[32px] rounded-full bg-[#0000001A] dark:bg-[#FFFFFF1A] dark:border dark:border-[#FFFFFF00] mb-[20px]'></Link>
                     <p className=' text-[#0000008C] dark:text-slate-600 text-[13px] mb-[10px]'>Mobile Number</p>
                     <form className=' font-bold text-2xl mb-[10px] flex items-center pb-[10px] border-b border-b-[#0000001A] dark:border-b-[#0000001A]'>
-                        <CountrySelector />
+                        <CountrySelector onSelectCode={setCountryCode} />
                         <input id="custom-number"
                             type="text"
                             inputMode="numeric"
@@ -167,13 +172,12 @@ const page = () => {
                             placeholder='00 0000 0000' className='bg-transparent appearance-none focus:outline-none text-black dark:text-slate-600' />
                     </form>
                     {
-                        isComplete ?
-                            <button onClick={handleNext} className=' h-[52px] mb-[10px] text-[15px] font-bold w-full text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-xl hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500 flex items-center justify-center'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]'/></button>
+                        isComplete
+                            ?
+                            <button onClick={handleNext} className=' h-[52px] mb-[10px] text-[15px] font-bold w-full text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-xl hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500 flex items-center justify-center'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]' /></button>
                             :
-                            <button onClick={handleErr} className=' h-[52px] mb-[10px] text-[15px] font-bold w-full text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white py-[10px] px-[100px] rounded-xl hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500 flex items-center justify-center'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]'/></button>
+                            <button onClick={handleErr} className=' h-[52px] mb-[10px] text-[15px] font-bold w-full text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white py-[10px] px-[100px] rounded-xl hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500 flex items-center justify-center'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]' /></button>
                     }
-
-                    {/* <Link href="/" className=' w-full mb-[10px] text-[15px] font-bold block text-center bg-red-500 text-white py-[10px] px-[100px] rounded-md hover:bg-red-500/60 duration-500'>Cancel</Link> */}
                 </div>
             </div>
         </div>
