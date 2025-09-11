@@ -15,6 +15,7 @@ import CountrySelector from '@/components/CountrySelector'
 import { IconArrowNarrowRight } from '@tabler/icons-react'
 
 const page = () => {
+    const [isLoading, setIsLoading] = useState(false)
     const [value, setValue] = useState('');
     const [toast, setToast] = useState(false)
     const [isComplete, setIsComplete] = useState(false);
@@ -47,9 +48,10 @@ const page = () => {
     const router = useRouter();
 
     const handleNext = async () => {
+        setIsLoading(true)
         // renders the country code with the rest of the phone number
         const fullPhone = `${countryCode}${phone}`;
-        console.log("📞 Sending to API:", fullPhone); 
+        console.log("📞 Sending to API:", fullPhone);
 
         const res = await fetch('/api/request-otp', {
             method: 'POST',
@@ -62,6 +64,7 @@ const page = () => {
         } else {
             setError('Failed to send OTP');
         }
+        setIsLoading(false)
     };
 
     return (
@@ -144,7 +147,16 @@ const page = () => {
                         <div className=' w-full flex items-center justify-between'>
                             {
                                 isComplete ?
-                                    <button onClick={handleNext} className=' w-[99%] text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
+                                    <button onClick={handleNext} className=' w-[99%] text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>
+                                        {
+                                            isLoading ?
+                                                (
+                                                    <span className="inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                                                )
+                                                :
+                                                <h1>Proceed</h1>
+                                        }
+                                    </button>
                                     :
                                     <button onClick={handleErr} className=' w-[99%] text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
                             }
@@ -174,7 +186,16 @@ const page = () => {
                     {
                         isComplete
                             ?
-                            <button onClick={handleNext} className=' h-[52px] mb-[10px] text-[15px] font-bold w-full text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-xl hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500 flex items-center justify-center'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]' /></button>
+                            <button onClick={handleNext} className=' h-[52px] mb-[10px] text-[15px] font-bold w-full text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-xl hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500 flex items-center justify-center'>
+                                {
+                                    isLoading ?
+                                        (
+                                            <span className="inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                                        )
+                                        :
+                                        <div className=' w-full flex items-center justify-center'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]' /></div>
+                                }
+                            </button>
                             :
                             <button onClick={handleErr} className=' h-[52px] mb-[10px] text-[15px] font-bold w-full text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white py-[10px] px-[100px] rounded-xl hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500 flex items-center justify-center'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]' /></button>
                     }
