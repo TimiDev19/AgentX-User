@@ -40,7 +40,7 @@ const Navbar = () => {
                     <Link
                         onClick={() => settingsLink()}
                         href={"/settings"}
-                        className={`p-1 ${showSettings ? 'block' : 'hidden'} ${settings ? `border border-white rounded-full` : `text-[#00000066] border-[#00000066] border rounded-full`} mx-[20px]  w-[60px] h-[60px] hover:h-[70px] flex items-center justify-center hover:w-[70px] mb-[10px] duration-700`}
+                        className={`p-1 ${showSettings ? 'block' : 'hidden'} ${settings ? `border border-white rounded-full` : `text-[#00000066] border-[#00000066] dark:border-white/50 dark:text-white/50 border rounded-full`} mx-[20px]  w-[60px] h-[60px] hover:h-[70px] flex items-center justify-center hover:w-[70px] mb-[10px] duration-700`}
                     >
                         <IconLayoutGrid
                             stroke={1}
@@ -68,7 +68,7 @@ const Navbar = () => {
                     <Link
                         onClick={() => notificationsLink()}
                         href={"/notifications"}
-                        className={`p-1 ${showNotifications ? 'block' : 'hidden'} ${notifications ? `border border-white rounded-full` : `text-[#00000066] border-[#00000066] border rounded-full`} mx-[20px]  w-[60px] h-[60px] hover:h-[70px] flex items-center justify-center hover:w-[70px] mb-[10px] duration-700`}
+                        className={`p-1 ${showNotifications ? 'block' : 'hidden'} ${notifications ? `border border-white rounded-full` : `text-[#00000066] border-[#00000066] dark:border-white/50 dark:text-white/50 border rounded-full`} mx-[20px]  w-[60px] h-[60px] hover:h-[70px] flex items-center justify-center hover:w-[70px] mb-[10px] duration-700`}
                     >
                         <IconBell
                             stroke={1}
