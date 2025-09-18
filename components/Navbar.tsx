@@ -3,10 +3,7 @@ import React, { useState } from 'react'
 import ellipse6 from "@/assets/Ellipse 6.png"
 import Link from 'next/link'
 import Image from 'next/image'
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-import { IconBell, IconBoxPadding, IconDashboard, IconLayoutGrid, IconNotification } from '@tabler/icons-react'
-import { Icon } from 'lucide-react'
+import { IconBell, IconLayoutGrid } from '@tabler/icons-react'
 
 const Navbar = () => {
     const [agent, setAgent] = useState(true)
@@ -68,16 +65,16 @@ const Navbar = () => {
                 </div>
 
                 <div className=' flex flex-col items-center justify-center'>
-                <Link
-                    onClick={() => notificationsLink()}
-                    href={"/notifications"}
-                    className={`p-1 ${showNotifications ? 'block' : 'hidden'} ${notifications ? `border border-white rounded-full` : `text-[#00000066] border-[#00000066] border rounded-full`} mx-[20px]  w-[60px] h-[60px] hover:h-[70px] flex items-center justify-center hover:w-[70px] mb-[10px] duration-700`}
-                >
-                    <IconBell
-                        stroke={1}
-                    />
-                </Link>
-                <h1 className=' font-bold text-[#00000066] text-[11px]'>Notifications</h1>
+                    <Link
+                        onClick={() => notificationsLink()}
+                        href={"/notifications"}
+                        className={`p-1 ${showNotifications ? 'block' : 'hidden'} ${notifications ? `border border-white rounded-full` : `text-[#00000066] border-[#00000066] border rounded-full`} mx-[20px]  w-[60px] h-[60px] hover:h-[70px] flex items-center justify-center hover:w-[70px] mb-[10px] duration-700`}
+                    >
+                        <IconBell
+                            stroke={1}
+                        />
+                    </Link>
+                    <h1 className=' font-bold text-[#00000066] text-[11px]'>Notifications</h1>
                 </div>
             </div>
         </div>

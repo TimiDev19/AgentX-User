@@ -10,9 +10,8 @@ import ellipse3 from "@/assets/Ellipse 14.png"
 import ellipse4 from "@/assets/Ellipse 13.png"
 import ellipse5 from "@/assets/Ellipse 12.png"
 import ellipse6 from "@/assets/Ellipse 6.png"
-import logo from "@/assets/logo.png"
 import Link from 'next/link'
-import { IconArrowForward, IconArrowNarrowRight } from '@tabler/icons-react';
+import { IconArrowNarrowRight } from '@tabler/icons-react';
 
 const OtpForm = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -162,9 +161,6 @@ const OtpForm = () => {
                         </div>
 
                         <form className=' font-bold text-2xl mb-[10px] flex items-center'>
-                            {/* <select name="" id="" className=' mr-[2px]'>
-                                <option value="+996">+996</option>
-                            </select> */}
                             <input id="custom-number"
                                 type="text"
                                 inputMode="numeric"
@@ -219,9 +215,6 @@ const OtpForm = () => {
                     </div>
 
                     <form className=' font-bold text-2xl mb-[10px] flex items-center'>
-                        {/* <select name="" id="" className=' mr-[2px]'>
-                                <option value="+996">+996</option>
-                            </select> */}
                         <input id="custom-number"
                             type="text"
                             inputMode="numeric"

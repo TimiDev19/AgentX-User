@@ -74,8 +74,8 @@ const page = () => {
                             and continue using our app
                         </p>
                         <div className=' w-full flex items-center justify-between'>
-                            <Link href="/auth/phone" className=' w-[49%] text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>I Accept</Link>
-                            <Link href="/" className=' w-[49%] text-center bg-red-500 text-white py-[10px] px-[100px] rounded-md hover:bg-red-500/60 duration-500'>Cancel</Link>
+                            <Link href="/auth/phone" className=' w-[49%] text-center bg-black dark:bg-[#AB4FA8] h-[52px] flex items-center justify-center text-white py-[10px] px-[100px] rounded-xl hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>I Accept</Link>
+                            <Link href="/" className=' w-[49%] text-center bg-red-500 text-white py-[10px] h-[52px] flex items-center justify-center px-[100px] rounded-xl hover:bg-red-500/60 duration-500'>Cancel</Link>
                         </div>
                     </div>
                 </div>

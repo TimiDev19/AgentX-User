@@ -147,18 +147,18 @@ const page = () => {
                         <div className=' w-full flex items-center justify-between'>
                             {
                                 isComplete ?
-                                    <button onClick={handleNext} className=' w-[99%] text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>
+                                    <button onClick={handleNext} className=' w-[99%] h-[52px] flex items-center justify-center text-center bg-black dark:bg-[#AB4FA8] text-white py-[10px] px-[100px] rounded-xl hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>
                                         {
                                             isLoading ?
                                                 (
                                                     <span className="inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
                                                 )
                                                 :
-                                                <h1>Proceed</h1>
+                                                <h1>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]' /></h1>
                                         }
                                     </button>
                                     :
-                                    <button onClick={handleErr} className=' w-[99%] text-center bg-black/60 dark:bg-[#AB4FA8]/60 text-white py-[10px] px-[100px] rounded-md hover:bg-black/60 dark:hover:bg-[#AB4FA8]/60 duration-500'>Proceed</button>
+                                    <button onClick={handleErr} className=' w-[99%] h-[52px] flex items-center justify-center text-center bg-[#E9E9E9] dark:bg-[#AB4FA8]/60 text-[#9E9E9E] py-[10px] px-[100px] rounded-xl duration-500'>Proceed <IconArrowNarrowRight stroke={2} size={14} className=' ml-[4px]' /></button>
                             }
                         </div>
                     </div>
